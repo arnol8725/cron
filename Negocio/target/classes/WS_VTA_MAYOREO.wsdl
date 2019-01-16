@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1379022754225" xmlns:ns0="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_mayoreo" xmlns:ns1="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Sal_mayoreo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1379022754225">
+    <wsdl:types>
+        <xs:schema xmlns="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Sal_mayoreo" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Sal_mayoreo" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Parametro_Salida">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Estatus" type="xs:decimal"/>
+                        <xs:element name="Fecha" type="xs:decimal"/>
+                        <xs:element name="Mensaje1" type="xs:string"/>
+                        <xs:element name="Mensaje2" type="xs:string"/>
+                        <xs:element name="Mensaje3" type="xs:string"/>
+                        <xs:element name="Mensaje4" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_mayoreo" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_mayoreo" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Parametros">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Tpo_Operacion" type="xs:int"/>
+                        <xs:element name="Pais" type="xs:decimal"/>
+                        <xs:element name="Canal" type="xs:decimal"/>
+                        <xs:element name="cd" type="xs:string"/>
+                        <xs:element name="Store_nbr" type="xs:string"/>
+                        <xs:element name="Pedido" type="xs:decimal"/>
+                        <xs:element name="Tipped" type="xs:string"/>
+                        <xs:element name="Fecentr" type="xs:decimal"/>
+                        <xs:element name="Nombre" type="xs:string"/>
+                        <xs:element name="Apepcl" type="xs:string"/>
+                        <xs:element name="Apemcl" type="xs:string"/>
+                        <xs:element name="Estado" type="xs:string"/>
+                        <xs:element name="Delegac" type="xs:string"/>
+                        <xs:element name="Cp" type="xs:string"/>
+                        <xs:element name="Colonia" type="xs:string"/>
+                        <xs:element name="Calle" type="xs:string"/>
+                        <xs:element name="Numero" type="xs:string"/>
+                        <xs:element name="Numerint" type="xs:string"/>
+                        <xs:element name="Telefono" type="xs:string"/>
+                        <xs:element name="Telcel" type="xs:string"/>
+                        <xs:element name="pedidoobs" type="xs:string"/>
+                        <xs:element name="lugentobs" type="xs:string"/>
+                        <xs:element name="Adicional1" type="xs:string"/>
+                        <xs:element name="Adicional2" type="xs:string"/>
+                        <xs:element name="DETALLE" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="skuequ" type="xs:string"/>
+                                    <xs:element name="preuni" type="xs:string"/>
+                                    <xs:element name="totventa" type="xs:string"/>
+                                    <xs:element name="descuen" type="xs:string"/>
+                                    <xs:element name="flete" type="xs:string"/>
+                                    <xs:element name="sku" type="xs:string"/>
+                                    <xs:element name="qty" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="intfWS_VTA_MAYOREO-service">
+        <wsdl:port name="intfwsWS_VTA_MAYOREOEndpoint3" binding="tns:intfwsWS_VTA_MAYOREOEndpoint3Binding">
+            <soap:address location="http://wsdes1.ad.elektra.com.mx:7068/BusinessProcesses/intfWS_VTA_MAYOREO-service.serviceagent/intfwsWS_VTA_MAYOREOEndpoint0"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="portType">
+        <wsdl:operation name="WS__VTA__MAYOREOOp">
+            <wsdl:input message="tns:Parametros"/>
+            <wsdl:output message="tns:Parametro_Salida"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="intfwsWS_VTA_MAYOREOEndpoint3Binding" type="tns:portType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="WS__VTA__MAYOREOOp">
+            <soap:operation style="document" soapAction="/BusinessProcesses/intfWS_VTA_MAYOREO-service.serviceagent/intfwsWS_VTA_MAYOREOEndpoint3/WS__VTA__MAYOREOOp"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="Parametros">
+        <wsdl:part name="parameters" element="ns0:Parametros"/>
+    </wsdl:message>
+    <wsdl:message name="Parametro_Salida">
+        <wsdl:part name="parameters" element="ns1:Parametro_Salida"/>
+    </wsdl:message>
+</wsdl:definitions>

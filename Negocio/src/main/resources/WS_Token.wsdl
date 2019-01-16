@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://generatoken/schemas" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://generatoken.com.mx/definitions" targetNamespace="http://generatoken.com.mx/definitions">
+  <wsdl:types xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cUnico="http://generatoken/schemas" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://generatoken/schemas">
+
+    <xs:element name="ObtieneHoraRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Obtiene la hora del servidor de BD</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema"/>    
+    </xs:element>
+    <xs:element name="ObtieneHoraResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Regresa la hora del servidor de BD</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="HoraServer" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ObtieneTokenRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Obtiene el token generado</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                <xs:element name="IdSistema" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="IdUsuario" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="IdSistemaSatelite" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ObtieneTokenResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Regresa el token generado</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="FinVigencia" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="InicioVigencia" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="TiempoVigencia" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Token" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtieneHoraResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:ObtieneHoraResponse" name="ObtieneHoraResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ObtieneHoraRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:ObtieneHoraRequest" name="ObtieneHoraRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ObtieneTokenResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:ObtieneTokenResponse" name="ObtieneTokenResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ObtieneTokenRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:ObtieneTokenRequest" name="ObtieneTokenRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GeneraTokenPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:operation name="ObtieneHora" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:ObtieneHoraRequest" name="ObtieneHoraRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:ObtieneHoraResponse" name="ObtieneHoraResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneToken" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:ObtieneTokenRequest" name="ObtieneTokenRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:ObtieneTokenResponse" name="ObtieneTokenResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GeneraTokenPortSoap11" type="tns:GeneraTokenPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="ObtieneHora" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="ObtieneHoraRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="ObtieneHoraResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneToken" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="ObtieneTokenRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="ObtieneTokenResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GeneraTokenPortService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:port binding="tns:GeneraTokenPortSoap11" name="GeneraTokenPortSoap11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:address location="http://10.220.128.82:8080/WsGeneraTokenSPPI/WsGeneraTokenSPPI/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

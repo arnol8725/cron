@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://servicios.elektra.com.mx/ekt/1.0/ws_ped_cent_consulta_uniformes" xmlns:ns0="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Consulta" xmlns:ns2="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Ped_Cent_Consul_Uniformes" xmlns:ns1="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Salid_Consulta" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns4="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Uniformes_Status" xmlns:ns3="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Salid_Ped_Cent_Consul_Uniformes" name="Untitled" targetNamespace="http://servicios.elektra.com.mx/ekt/1.0/ws_ped_cent_consulta_uniformes">
+    <wsdl:types>
+        <xs:schema xmlns="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Consulta" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Consulta" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Entrada">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Sistema" type="xs:string"/>
+                        <xs:element name="Detalle" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Tienda" type="xs:string"/>
+                                    <xs:element name="Folio" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Salid_Ped_Cent_Consul_Uniformes" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Salid_Ped_Cent_Consul_Uniformes" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Parametros">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="detalle" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="pais" type="xs:string"/>
+                                    <xs:element name="canal" type="xs:string"/>
+                                    <xs:element name="id_tienda" type="xs:string"/>
+                                    <xs:element name="tienda" type="xs:string"/>
+                                    <xs:element name="almacen" type="xs:string"/>
+                                    <xs:element name="cliente" type="xs:string"/>
+                                    <xs:element name="pedido" type="xs:string"/>
+                                    <xs:element name="status_pedido" type="xs:string"/>
+                                    <xs:element name="fecha_cancelacion" type="xs:string"/>
+                                    <xs:element name="tipo_entrega" type="xs:string"/>
+                                    <xs:element name="tipo_venta" type="xs:string"/>
+                                    <xs:element name="tipo_pedido" type="xs:string"/>
+                                    <xs:element name="fecha_entrega" type="xs:string"/>
+                                    <xs:element name="fecha_creacion" type="xs:string"/>
+                                    <xs:element name="sku" type="xs:string"/>
+                                    <xs:element name="cantidad_req" type="xs:string"/>
+                                    <xs:element name="num_remision" type="xs:string"/>
+                                    <xs:element name="fecha_remision" type="xs:string"/>
+                                    <xs:element name="status_remision" type="xs:string"/>
+                                    <xs:element name="fecha_conf_remision" type="xs:string"/>
+                                    <xs:element name="carga" type="xs:string"/>
+                                    <xs:element name="ruta" type="xs:string"/>
+                                    <xs:element name="mensaje" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Uniformes_Status" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Uniformes_Status" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Parametros">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Almacen" type="xs:string"/>
+                        <xs:element name="Status" type="xs:string"/>
+                        <xs:element name="Fecha" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Parametros_Entrada">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Sistema" type="xs:string"/>
+                        <xs:element ref="ns4:Parametros"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Ped_Cent_Consul_Uniformes" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Entr_Ped_Cent_Consul_Uniformes" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Parametros_Entrada">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Sistema" type="xs:string"/>
+                        <xs:element name="Tienda" type="xs:string"/>
+                        <xs:element name="Pedido" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Salid_Consulta" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esquemas.elektra.com.mx/ekt/1.0/Esq_Salid_Consulta" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="Parametros">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Salida" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Cd" type="xs:string"/>
+                                    <xs:element name="Tienda" type="xs:string"/>
+                                    <xs:element name="FolioWM" type="xs:string"/>
+                                    <xs:element name="Ref_Field_3" type="xs:string"/>
+                                    <xs:element name="Sku" type="xs:string"/>
+                                    <xs:element name="Descripcion" type="xs:string"/>
+                                    <xs:element name="Cantq_Req" type="xs:string"/>
+                                    <xs:element name="Create_Date_Time" type="xs:string"/>
+                                    <xs:element name="Wave_Nbr" type="xs:string"/>
+                                    <xs:element name="Stat_Code" type="xs:string"/>
+                                    <xs:element name="Cant_Sur" type="xs:string"/>
+                                    <xs:element name="Mod_Date_Time" type="xs:string"/>
+                                    <xs:element name="Pkt_Ctrl_Nbr" type="xs:string"/>
+                                    <xs:element name="FolRem" type="xs:string"/>
+                                    <xs:element name="FecRem" type="xs:string"/>
+                                    <xs:element name="Ruta" type="xs:string"/>
+                                    <xs:element name="Msg" type="xs:string"/>
+                                    <xs:element name="Notadecargo" type="xs:string"/>
+                                    <xs:element name="NotadeEntrada" type="xs:string"/>
+                                    <xs:element name="StsRemision" type="xs:string"/>
+                                    <xs:element name="ObservacionesNC" type="xs:string"/>
+                                    <xs:element name="ObservacionesNE" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="intfPED_CENT_CONSULTA_STATUS-service">
+        <wsdl:port name="intfwsPED_CENT_CONSULTA_STATUSEndpoint0" binding="tns:intfwsPED_CENT_CONSULTA_STATUSEndpoint0Binding">
+            <soap:address location="http://ws.ad.elektra.com.mx:7022/BusinessProcesses/Systems/WSEvents/intfPED_CENT_CONSULTA_STATUS-service.serviceagent/intfwsPED_CENT_CONSULTA_STATUSEndpoint0"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="portType">
+        <wsdl:operation name="PED__CENT__CONSULTA__STATUS__NEOp">
+            <wsdl:input message="tns:Entrada"/>
+            <wsdl:output message="tns:Parametros2"/>
+        </wsdl:operation>
+        <wsdl:operation name="PED__CENT__CONSULTA__UNIFORMESOp">
+            <wsdl:input message="tns:Parametros_Entrada2"/>
+            <wsdl:output message="tns:Parametros3"/>
+        </wsdl:operation>
+        <wsdl:operation name="PED__CENT__CONSULTA__STATUSOp">
+            <wsdl:input message="tns:Parametros_Entrada"/>
+            <wsdl:output message="tns:Parametros"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="intfwsPED_CENT_CONSULTA_STATUSEndpoint0Binding" type="tns:portType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="PED__CENT__CONSULTA__STATUS__NEOp">
+            <soap:operation style="document" soapAction="/BusinessProcesses/Systems/WSEvents/intfPED_CENT_CONSULTA_STATUS-service.serviceagent/intfwsPED_CENT_CONSULTA_STATUSEndpoint0/PED__CENT__CONSULTA__STATUS__NEOp"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PED__CENT__CONSULTA__UNIFORMESOp">
+            <soap:operation style="document" soapAction="/BusinessProcesses/Systems/WSEvents/intfPED_CENT_CONSULTA_STATUS-service.serviceagent/intfwsPED_CENT_CONSULTA_STATUSEndpoint0/PED__CENT__CONSULTA__UNIFORMESOp"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PED__CENT__CONSULTA__STATUSOp">
+            <soap:operation style="document" soapAction="/BusinessProcesses/Systems/WSEvents/intfPED_CENT_CONSULTA_STATUS-service.serviceagent/intfwsPED_CENT_CONSULTA_STATUSEndpoint0/PED__CENT__CONSULTA__STATUSOp"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="Entrada">
+        <wsdl:part name="parameters" element="ns0:Entrada"/>
+    </wsdl:message>
+    <wsdl:message name="Parametros2">
+        <wsdl:part name="parameters" element="ns1:Parametros"/>
+    </wsdl:message>
+    <wsdl:message name="Parametros_Entrada2">
+        <wsdl:part name="parameters" element="ns2:Parametros_Entrada"/>
+    </wsdl:message>
+    <wsdl:message name="Parametros3">
+        <wsdl:part name="parameters" element="ns3:Parametros"/>
+    </wsdl:message>
+    <wsdl:message name="Parametros_Entrada">
+        <wsdl:part name="parameters" element="ns4:Parametros_Entrada"/>
+    </wsdl:message>
+    <wsdl:message name="Parametros">
+        <wsdl:part name="parameters" element="ns3:Parametros"/>
+    </wsdl:message>
+</wsdl:definitions>

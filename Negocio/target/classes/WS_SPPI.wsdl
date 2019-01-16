@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="VerificaSaldo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveCentroProvedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveServicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveSociedad" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Concepto" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaInicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaSaldoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerificaSaldoResult" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AvanceCargaRealSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaRealSPPI" type="tns:ArrayOfAvanceCargaReal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAvanceCargaReal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AvanceCargaReal" type="tns:AvanceCargaReal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AvanceCargaReal">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FolioCarga" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaCarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcentajeAvance" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaInicioCarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaFinCarga" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegistrosTotales" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegistrosAceptados" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegistrosRechazados" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Numdocumento" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AvanceCargaRealSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaRealSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaRealSPPI" type="tns:ArrayOfAvanceCargaReal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AvanceCargaVirtualSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaVirtualSPPI" type="tns:ArrayOfAvanceCargaVirtual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAvanceCargaVirtual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AvanceCargaVirtual" type="tns:AvanceCargaVirtual" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AvanceCargaVirtual">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FolioCarga" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaCarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcentajeAvance" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaInicioCarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaFinCarga" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegistrosTotales" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegistrosAceptados" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegistrosRechazados" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AvanceCargaVirtualSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaVirtualSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaVirtualSPPI" type="tns:ArrayOfAvanceCargaVirtual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CargaRealesSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveCentroProvedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveServicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveSociedad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Concepto" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaInicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaFinal" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImporteTotal" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCarga" type="tns:ArrayOfDetalleCargaRe" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaRe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaRe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaRe" type="tns:DetalleCargaRe" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaRe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumEmpleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfErroresCargaRe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErroresCargaRe" type="tns:ErroresCargaRe" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ErroresCargaRe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumEmpleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CargaRealesSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CargaRealesSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaRe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CargaRealesSPPIDistribuido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveCentroProvedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveServicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveSociedad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Concepto" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaInicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaFinal" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImporteTotal" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCarga" type="tns:ArrayOfDetalleCargaReDistribuido" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaReDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaReDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaReDistribuido" type="tns:DetalleCargaReDistribuido" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaReDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumEmpleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfErroresCargaReDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErroresCargaReDistribuido" type="tns:ErroresCargaReDistribuido" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ErroresCargaReDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumEmpleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CargaRealesSPPIDistribuidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CargaRealesSPPIDistribuidoResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaReDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CargaVirtualesIUSASPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReEmpresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReProveedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReServicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCarga" type="tns:ArrayOfDetalleVirtualIUSA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleVirtualIUSA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleVirtualIUSA" type="tns:DetalleVirtualIUSA" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleVirtualIUSA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Empresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CentroCostos" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observaciones" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Area" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnidadNegocio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Empleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaMapeada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCMapeado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CargaVirtualesIUSASPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CargaVirtualesIUSASPPIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CargaVirtualesSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCarga" type="tns:ArrayOfDetalleCargaVi" />
+            <s:element minOccurs="1" maxOccurs="1" name="TipoCarga" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaVi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaVi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaVi" type="tns:DetalleCargaVi" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaVi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CProveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoCantidad" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfErroresCargaVi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErroresCargaVi" type="tns:ErroresCargaVi" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ErroresCargaVi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CProveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoCantidad" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CargaVirtualesSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CargaVirtualesSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaVi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CargaVirtualesSPPIDistribuido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCarga" type="tns:ArrayOfDetalleCargaViDistribuido" />
+            <s:element minOccurs="1" maxOccurs="1" name="TipoCarga" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaViDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaViDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaViDistribuido" type="tns:DetalleCargaViDistribuido" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaViDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CProveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoCantidad" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfErroresCargaViDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErroresCargaViDistribuido" type="tns:ErroresCargaViDistribuido" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ErroresCargaViDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CProveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoCantidad" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CargaVirtualesSPPIDistribuidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CargaVirtualesSPPIDistribuidoResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Carga" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErroresCarga" type="tns:ArrayOfErroresCargaViDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CatalogoCentrosCostos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SoloPresupuestados" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoCentrosCostos" type="tns:ArrayOfCatalogoCentroCosto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCatalogoCentroCosto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CatalogoCentroCosto" type="tns:CatalogoCentroCosto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CatalogoCentroCosto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ClaveCentro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescripcionCentro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CatalogoCentrosCostosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoCentrosCostosResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoCentrosCostos" type="tns:ArrayOfCatalogoCentroCosto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CatalogoServicios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServicios" type="tns:ArrayOfCatalogoServicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCatalogoServicio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CatalogoServicio" type="tns:CatalogoServicio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CatalogoServicio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CProveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescripcionServicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoServicio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NaturalezaServicio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifa" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CatalogoServiciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServiciosResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServicios" type="tns:ArrayOfCatalogoServicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CatalogoServiciosMoneda">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveMoneda" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServicios" type="tns:ArrayOfCatalogoServicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CatalogoServiciosMonedaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServiciosMonedaResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServicios" type="tns:ArrayOfCatalogoServicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleCargaRealSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPI" type="tns:ArrayOfDetalleCargaReal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaReal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaReal" type="tns:DetalleCargaReal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaReal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumEmpleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetalleCargaRealSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPI" type="tns:ArrayOfDetalleCargaReal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleCargaRealSPPIDistribuido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPI" type="tns:ArrayOfDetalleCargaRealDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaRealDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaRealDistribuido" type="tns:DetalleCargaRealDistribuido" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaRealDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumEmpleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetalleCargaRealSPPIDistribuidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPIDistribuidoResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPI" type="tns:ArrayOfDetalleCargaRealDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleCargaVirtualSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleCargaVirtual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaVirtual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaVirtual" type="tns:DetalleCargaVirtual" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaVirtual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CProveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoCantidad" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factura" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetalleCargaVirtualSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleCargaVirtual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleCargaVirtualSPPIDistribuido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleCargaVirtualDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleCargaVirtualDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleCargaVirtualDistribuido" type="tns:DetalleCargaVirtualDistribuido" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleCargaVirtualDistribuido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CProveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoCantidad" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observaciones" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetalleCargaVirtualSPPIDistribuidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPIDistribuidoResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleCargaVirtualDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleDisponibleSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="proveedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleDisponible" type="tns:ArrayOfDetalleDisponible" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleDisponible">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleDisponible" type="tns:DetalleDisponible" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleDisponible">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ClienteCia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnidadNegocios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Disponible" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Proyecto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PresupuestoPlan" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetalleDisponibleSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleDisponibleSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleDisponible" type="tns:ArrayOfDetalleDisponible" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleFacturacionRealSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPI" type="tns:ArrayOfDetalleRealFacturacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleRealFacturacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleRealFacturacion" type="tns:DetalleRealFacturacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleRealFacturacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Proveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Emisora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClienteSociedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unidades" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tarifa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Empleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Concepto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentoSAP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CiaCliente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetalleFacturacionRealSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleFacturacionRealSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaRealSPPI" type="tns:ArrayOfDetalleRealFacturacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetalleFacturacionVirtualSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdSistemaSatelital" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folio" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleVirtualFacturacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDetalleVirtualFacturacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleVirtualFacturacion" type="tns:DetalleVirtualFacturacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleVirtualFacturacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Proveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClienteCia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnidadNegocio" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaDistribuido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CClienteDistribuido" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unidades" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tarifa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Proyecto" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Empleado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DetalleFacturacionVirtualSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleFacturacionVirtualSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleVirtualFacturacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVAAvanceCargaVirtualSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Proveedor" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cliente" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaVirtualSPPI" type="tns:ArrayOfAvanceCargaVirtual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVAAvanceCargaVirtualSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SPPITVAAvanceCargaVirtualSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="AvanceCargaVirtualSPPI" type="tns:ArrayOfAvanceCargaVirtual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVACatalogoCentrosCostos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoCentrosCostos" type="tns:ArrayOfCatalogoCentroCosto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVACatalogoCentrosCostosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SPPITVACatalogoCentrosCostosResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoCentrosCostos" type="tns:ArrayOfCatalogoCentroCosto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVACatalogoServiciosMoneda">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveUsuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClaveMoneda" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServicios" type="tns:ArrayOfCatalogoServicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVACatalogoServiciosMonedaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SPPITVACatalogoServiciosMonedaResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="CatalogoServicios" type="tns:ArrayOfCatalogoServicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVADetalleCargaVirtualSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Proveedor" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cliente" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleCargaVirtualDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVADetalleCargaVirtualSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SPPITVADetalleCargaVirtualSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleCargaVirtualDistribuido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVADetalleFacturacionVirtualSPPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Proveedor" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cliente" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ano" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mes" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleVirtualFacturacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPPITVADetalleFacturacionVirtualSPPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SPPITVADetalleFacturacionVirtualSPPIResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgerror" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DetalleCargaVirtualSPPI" type="tns:ArrayOfDetalleVirtualFacturacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VerificaSaldoSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaSaldo" />
+  </wsdl:message>
+  <wsdl:message name="VerificaSaldoSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaSaldoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AvanceCargaRealSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:AvanceCargaRealSPPI" />
+  </wsdl:message>
+  <wsdl:message name="AvanceCargaRealSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:AvanceCargaRealSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="AvanceCargaVirtualSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:AvanceCargaVirtualSPPI" />
+  </wsdl:message>
+  <wsdl:message name="AvanceCargaVirtualSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:AvanceCargaVirtualSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="CargaRealesSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:CargaRealesSPPI" />
+  </wsdl:message>
+  <wsdl:message name="CargaRealesSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:CargaRealesSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="CargaRealesSPPIDistribuidoSoapIn">
+    <wsdl:part name="parameters" element="tns:CargaRealesSPPIDistribuido" />
+  </wsdl:message>
+  <wsdl:message name="CargaRealesSPPIDistribuidoSoapOut">
+    <wsdl:part name="parameters" element="tns:CargaRealesSPPIDistribuidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CargaVirtualesIUSASPPISoapIn">
+    <wsdl:part name="parameters" element="tns:CargaVirtualesIUSASPPI" />
+  </wsdl:message>
+  <wsdl:message name="CargaVirtualesIUSASPPISoapOut">
+    <wsdl:part name="parameters" element="tns:CargaVirtualesIUSASPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="CargaVirtualesSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:CargaVirtualesSPPI" />
+  </wsdl:message>
+  <wsdl:message name="CargaVirtualesSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:CargaVirtualesSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="CargaVirtualesSPPIDistribuidoSoapIn">
+    <wsdl:part name="parameters" element="tns:CargaVirtualesSPPIDistribuido" />
+  </wsdl:message>
+  <wsdl:message name="CargaVirtualesSPPIDistribuidoSoapOut">
+    <wsdl:part name="parameters" element="tns:CargaVirtualesSPPIDistribuidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CatalogoCentrosCostosSoapIn">
+    <wsdl:part name="parameters" element="tns:CatalogoCentrosCostos" />
+  </wsdl:message>
+  <wsdl:message name="CatalogoCentrosCostosSoapOut">
+    <wsdl:part name="parameters" element="tns:CatalogoCentrosCostosResponse" />
+  </wsdl:message>
+  <wsdl:message name="CatalogoServiciosSoapIn">
+    <wsdl:part name="parameters" element="tns:CatalogoServicios" />
+  </wsdl:message>
+  <wsdl:message name="CatalogoServiciosSoapOut">
+    <wsdl:part name="parameters" element="tns:CatalogoServiciosResponse" />
+  </wsdl:message>
+  <wsdl:message name="CatalogoServiciosMonedaSoapIn">
+    <wsdl:part name="parameters" element="tns:CatalogoServiciosMoneda" />
+  </wsdl:message>
+  <wsdl:message name="CatalogoServiciosMonedaSoapOut">
+    <wsdl:part name="parameters" element="tns:CatalogoServiciosMonedaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaRealSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleCargaRealSPPI" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaRealSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleCargaRealSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaRealSPPIDistribuidoSoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleCargaRealSPPIDistribuido" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaRealSPPIDistribuidoSoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleCargaRealSPPIDistribuidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaVirtualSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleCargaVirtualSPPI" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaVirtualSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleCargaVirtualSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaVirtualSPPIDistribuidoSoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleCargaVirtualSPPIDistribuido" />
+  </wsdl:message>
+  <wsdl:message name="DetalleCargaVirtualSPPIDistribuidoSoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleCargaVirtualSPPIDistribuidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleDisponibleSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleDisponibleSPPI" />
+  </wsdl:message>
+  <wsdl:message name="DetalleDisponibleSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleDisponibleSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleFacturacionRealSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleFacturacionRealSPPI" />
+  </wsdl:message>
+  <wsdl:message name="DetalleFacturacionRealSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleFacturacionRealSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetalleFacturacionVirtualSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:DetalleFacturacionVirtualSPPI" />
+  </wsdl:message>
+  <wsdl:message name="DetalleFacturacionVirtualSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:DetalleFacturacionVirtualSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVAAvanceCargaVirtualSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:SPPITVAAvanceCargaVirtualSPPI" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVAAvanceCargaVirtualSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:SPPITVAAvanceCargaVirtualSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVACatalogoCentrosCostosSoapIn">
+    <wsdl:part name="parameters" element="tns:SPPITVACatalogoCentrosCostos" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVACatalogoCentrosCostosSoapOut">
+    <wsdl:part name="parameters" element="tns:SPPITVACatalogoCentrosCostosResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVACatalogoServiciosMonedaSoapIn">
+    <wsdl:part name="parameters" element="tns:SPPITVACatalogoServiciosMoneda" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVACatalogoServiciosMonedaSoapOut">
+    <wsdl:part name="parameters" element="tns:SPPITVACatalogoServiciosMonedaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVADetalleCargaVirtualSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:SPPITVADetalleCargaVirtualSPPI" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVADetalleCargaVirtualSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:SPPITVADetalleCargaVirtualSPPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVADetalleFacturacionVirtualSPPISoapIn">
+    <wsdl:part name="parameters" element="tns:SPPITVADetalleFacturacionVirtualSPPI" />
+  </wsdl:message>
+  <wsdl:message name="SPPITVADetalleFacturacionVirtualSPPISoapOut">
+    <wsdl:part name="parameters" element="tns:SPPITVADetalleFacturacionVirtualSPPIResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ConectorUnicoSoap">
+    <wsdl:operation name="VerificaSaldo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta el saldo disponible con SAP</wsdl:documentation>
+      <wsdl:input message="tns:VerificaSaldoSoapIn" />
+      <wsdl:output message="tns:VerificaSaldoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AvanceCargaRealSPPI">
+      <wsdl:input message="tns:AvanceCargaRealSPPISoapIn" />
+      <wsdl:output message="tns:AvanceCargaRealSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AvanceCargaVirtualSPPI">
+      <wsdl:input message="tns:AvanceCargaVirtualSPPISoapIn" />
+      <wsdl:output message="tns:AvanceCargaVirtualSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CargaRealesSPPI">
+      <wsdl:input message="tns:CargaRealesSPPISoapIn" />
+      <wsdl:output message="tns:CargaRealesSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CargaRealesSPPIDistribuido">
+      <wsdl:input message="tns:CargaRealesSPPIDistribuidoSoapIn" />
+      <wsdl:output message="tns:CargaRealesSPPIDistribuidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesIUSASPPI">
+      <wsdl:input message="tns:CargaVirtualesIUSASPPISoapIn" />
+      <wsdl:output message="tns:CargaVirtualesIUSASPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesSPPI">
+      <wsdl:input message="tns:CargaVirtualesSPPISoapIn" />
+      <wsdl:output message="tns:CargaVirtualesSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesSPPIDistribuido">
+      <wsdl:input message="tns:CargaVirtualesSPPIDistribuidoSoapIn" />
+      <wsdl:output message="tns:CargaVirtualesSPPIDistribuidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoCentrosCostos">
+      <wsdl:input message="tns:CatalogoCentrosCostosSoapIn" />
+      <wsdl:output message="tns:CatalogoCentrosCostosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoServicios">
+      <wsdl:input message="tns:CatalogoServiciosSoapIn" />
+      <wsdl:output message="tns:CatalogoServiciosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoServiciosMoneda">
+      <wsdl:input message="tns:CatalogoServiciosMonedaSoapIn" />
+      <wsdl:output message="tns:CatalogoServiciosMonedaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaRealSPPI">
+      <wsdl:input message="tns:DetalleCargaRealSPPISoapIn" />
+      <wsdl:output message="tns:DetalleCargaRealSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaRealSPPIDistribuido">
+      <wsdl:input message="tns:DetalleCargaRealSPPIDistribuidoSoapIn" />
+      <wsdl:output message="tns:DetalleCargaRealSPPIDistribuidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaVirtualSPPI">
+      <wsdl:input message="tns:DetalleCargaVirtualSPPISoapIn" />
+      <wsdl:output message="tns:DetalleCargaVirtualSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaVirtualSPPIDistribuido">
+      <wsdl:input message="tns:DetalleCargaVirtualSPPIDistribuidoSoapIn" />
+      <wsdl:output message="tns:DetalleCargaVirtualSPPIDistribuidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleDisponibleSPPI">
+      <wsdl:input message="tns:DetalleDisponibleSPPISoapIn" />
+      <wsdl:output message="tns:DetalleDisponibleSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleFacturacionRealSPPI">
+      <wsdl:input message="tns:DetalleFacturacionRealSPPISoapIn" />
+      <wsdl:output message="tns:DetalleFacturacionRealSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetalleFacturacionVirtualSPPI">
+      <wsdl:input message="tns:DetalleFacturacionVirtualSPPISoapIn" />
+      <wsdl:output message="tns:DetalleFacturacionVirtualSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVAAvanceCargaVirtualSPPI">
+      <wsdl:input message="tns:SPPITVAAvanceCargaVirtualSPPISoapIn" />
+      <wsdl:output message="tns:SPPITVAAvanceCargaVirtualSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVACatalogoCentrosCostos">
+      <wsdl:input message="tns:SPPITVACatalogoCentrosCostosSoapIn" />
+      <wsdl:output message="tns:SPPITVACatalogoCentrosCostosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVACatalogoServiciosMoneda">
+      <wsdl:input message="tns:SPPITVACatalogoServiciosMonedaSoapIn" />
+      <wsdl:output message="tns:SPPITVACatalogoServiciosMonedaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVADetalleCargaVirtualSPPI">
+      <wsdl:input message="tns:SPPITVADetalleCargaVirtualSPPISoapIn" />
+      <wsdl:output message="tns:SPPITVADetalleCargaVirtualSPPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVADetalleFacturacionVirtualSPPI">
+      <wsdl:input message="tns:SPPITVADetalleFacturacionVirtualSPPISoapIn" />
+      <wsdl:output message="tns:SPPITVADetalleFacturacionVirtualSPPISoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConectorUnicoSoap" type="tns:ConectorUnicoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificaSaldo">
+      <soap:operation soapAction="http://tempuri.org/VerificaSaldo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AvanceCargaRealSPPI">
+      <soap:operation soapAction="http://tempuri.org/AvanceCargaRealSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AvanceCargaVirtualSPPI">
+      <soap:operation soapAction="http://tempuri.org/AvanceCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaRealesSPPI">
+      <soap:operation soapAction="http://tempuri.org/CargaRealesSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaRealesSPPIDistribuido">
+      <soap:operation soapAction="http://tempuri.org/CargaRealesSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesIUSASPPI">
+      <soap:operation soapAction="http://tempuri.org/CargaVirtualesIUSASPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesSPPI">
+      <soap:operation soapAction="http://tempuri.org/CargaVirtualesSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesSPPIDistribuido">
+      <soap:operation soapAction="http://tempuri.org/CargaVirtualesSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoCentrosCostos">
+      <soap:operation soapAction="http://tempuri.org/CatalogoCentrosCostos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoServicios">
+      <soap:operation soapAction="http://tempuri.org/CatalogoServicios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoServiciosMoneda">
+      <soap:operation soapAction="http://tempuri.org/CatalogoServiciosMoneda" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaRealSPPI">
+      <soap:operation soapAction="http://tempuri.org/DetalleCargaRealSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaRealSPPIDistribuido">
+      <soap:operation soapAction="http://tempuri.org/DetalleCargaRealSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaVirtualSPPI">
+      <soap:operation soapAction="http://tempuri.org/DetalleCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaVirtualSPPIDistribuido">
+      <soap:operation soapAction="http://tempuri.org/DetalleCargaVirtualSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleDisponibleSPPI">
+      <soap:operation soapAction="http://tempuri.org/DetalleDisponibleSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleFacturacionRealSPPI">
+      <soap:operation soapAction="http://tempuri.org/DetalleFacturacionRealSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleFacturacionVirtualSPPI">
+      <soap:operation soapAction="http://tempuri.org/DetalleFacturacionVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVAAvanceCargaVirtualSPPI">
+      <soap:operation soapAction="http://tempuri.org/SPPITVAAvanceCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVACatalogoCentrosCostos">
+      <soap:operation soapAction="http://tempuri.org/SPPITVACatalogoCentrosCostos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVACatalogoServiciosMoneda">
+      <soap:operation soapAction="http://tempuri.org/SPPITVACatalogoServiciosMoneda" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVADetalleCargaVirtualSPPI">
+      <soap:operation soapAction="http://tempuri.org/SPPITVADetalleCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVADetalleFacturacionVirtualSPPI">
+      <soap:operation soapAction="http://tempuri.org/SPPITVADetalleFacturacionVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConectorUnicoSoap12" type="tns:ConectorUnicoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificaSaldo">
+      <soap12:operation soapAction="http://tempuri.org/VerificaSaldo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AvanceCargaRealSPPI">
+      <soap12:operation soapAction="http://tempuri.org/AvanceCargaRealSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AvanceCargaVirtualSPPI">
+      <soap12:operation soapAction="http://tempuri.org/AvanceCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaRealesSPPI">
+      <soap12:operation soapAction="http://tempuri.org/CargaRealesSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaRealesSPPIDistribuido">
+      <soap12:operation soapAction="http://tempuri.org/CargaRealesSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesIUSASPPI">
+      <soap12:operation soapAction="http://tempuri.org/CargaVirtualesIUSASPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesSPPI">
+      <soap12:operation soapAction="http://tempuri.org/CargaVirtualesSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CargaVirtualesSPPIDistribuido">
+      <soap12:operation soapAction="http://tempuri.org/CargaVirtualesSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoCentrosCostos">
+      <soap12:operation soapAction="http://tempuri.org/CatalogoCentrosCostos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoServicios">
+      <soap12:operation soapAction="http://tempuri.org/CatalogoServicios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoServiciosMoneda">
+      <soap12:operation soapAction="http://tempuri.org/CatalogoServiciosMoneda" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaRealSPPI">
+      <soap12:operation soapAction="http://tempuri.org/DetalleCargaRealSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaRealSPPIDistribuido">
+      <soap12:operation soapAction="http://tempuri.org/DetalleCargaRealSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaVirtualSPPI">
+      <soap12:operation soapAction="http://tempuri.org/DetalleCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleCargaVirtualSPPIDistribuido">
+      <soap12:operation soapAction="http://tempuri.org/DetalleCargaVirtualSPPIDistribuido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleDisponibleSPPI">
+      <soap12:operation soapAction="http://tempuri.org/DetalleDisponibleSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleFacturacionRealSPPI">
+      <soap12:operation soapAction="http://tempuri.org/DetalleFacturacionRealSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetalleFacturacionVirtualSPPI">
+      <soap12:operation soapAction="http://tempuri.org/DetalleFacturacionVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVAAvanceCargaVirtualSPPI">
+      <soap12:operation soapAction="http://tempuri.org/SPPITVAAvanceCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVACatalogoCentrosCostos">
+      <soap12:operation soapAction="http://tempuri.org/SPPITVACatalogoCentrosCostos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVACatalogoServiciosMoneda">
+      <soap12:operation soapAction="http://tempuri.org/SPPITVACatalogoServiciosMoneda" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVADetalleCargaVirtualSPPI">
+      <soap12:operation soapAction="http://tempuri.org/SPPITVADetalleCargaVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPPITVADetalleFacturacionVirtualSPPI">
+      <soap12:operation soapAction="http://tempuri.org/SPPITVADetalleFacturacionVirtualSPPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConectorUnico">
+    <wsdl:port name="ConectorUnicoSoap" binding="tns:ConectorUnicoSoap">
+      <soap:address location="http://10.50.92.62/wssppiprod/ConectorUnico/ConectorUnico.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConectorUnicoSoap12" binding="tns:ConectorUnicoSoap12">
+      <soap12:address location="http://10.50.92.62/wssppiprod/ConectorUnico/ConectorUnico.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

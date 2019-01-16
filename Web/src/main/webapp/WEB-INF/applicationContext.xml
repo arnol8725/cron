@@ -1,0 +1,166 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd" xmlns:aop="http://www.springframework.org/schema/aop">
+ 
+    <!--PROPERTIES-->
+    <bean id="propiedadesCronUniformesComercio"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="singleton" value="true"/>
+        <property name="location">
+            <value>file:#{systemProperties['oracle.j2ee.home']}/config/SRVUniformesComercio.properties</value> 
+        </property>
+    </bean>
+    <bean id="projectPropertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="properties" ref="propiedadesCronUniformesComercio"/>
+    </bean>
+    <bean id="formatFecha" class="java.text.SimpleDateFormat">
+        <constructor-arg value="dd/MM/yyyy" />
+    </bean>
+    <!--BEANS SCAN-->
+    <context:component-scan base-package="com.elektra.uniformes.comercio.cron.negocio
+                                        ,com.elektra.uniformes.comercio.cron.dao
+                                        ,com.elektra.uniformes.comercio.cron.util" />
+    <!--Job ACTUALIZACION CDXTIENDAS-->
+    <bean id="tareaActualizacionCDXTiendas" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioActualizacionCDXTiendas" />
+        <property name="targetMethod" value="cronActualizaCDXTiendas" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="cronTriggerActualizaCDXTiendas" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaActualizacionCDXTiendas" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_ACTUALIZA_CD_X_TIENDAS}" />
+    </bean> 
+    
+    <!--Job ACTUALIZACION TIENDAS-->
+    <bean id="tareaActualizacionTiendas" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioActualizacionTiendas" />
+        <property name="targetMethod" value="cronActualizaTiendas" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="cronTriggerActualizaTiendas" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaActualizacionTiendas" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_ACTUALIZA_TIENDAS}" />
+    </bean>    
+    
+    <!--Job GRABADO SOLICITUDES-->
+    <bean id="tareaGrabacionSolicitudes" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioGrabadoSolicitudes" />
+        <property name="targetMethod" value="cronGrabarSolicitudes" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="cronTriggerGrabarSolicitudes" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaGrabacionSolicitudes" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_GRABAR_SOLICITUDES}" />
+    </bean>
+    
+    <!--Job ACTUALIZACION ESTATUS CD-->
+    <bean id="tareaActualizacionEstatusCD" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioActualizacionEstatusCD" />
+        <property name="targetMethod" value="cronActualizaEstatusCD" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="cronTriggerActualizaEstatusCD" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaActualizacionEstatusCD" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_ACT_ESTATUS_CD}" />
+    </bean>    
+    
+    <!--Job ACTUALIZACION NOTASCARGOENTRADA-->
+    <bean id="tareaActualizacionNotasCargoEntrada" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioActualizacionNotaCargoEntrada" />
+        <property name="targetMethod" value="cronActualizaNotasCargoEntrada" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="cronTriggerActualizaNotasCargoEntrada" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaActualizacionNotasCargoEntrada" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_ACT_NOTAS_CARGO_ENTRADA}" />
+    </bean>       
+    
+    <!--Job GRABADO DESCUENTOS SAP-->
+    <bean id="tareaGrabadoDescuentosSAP" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioGrabadoDescuentoSAP" />
+        <property name="targetMethod" value="cronGrabaDescuentosSAP" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="cronTriggerGrabaDescuentosSAP" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaGrabadoDescuentosSAP" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_GRABA_DESCUENTOS_SAP}" />
+    </bean>    
+    
+    <!--Job ACTUALIZACION DESCUENTOS SAP X PEDIDO-->
+    <bean id="tareaActualizacionDescuentosSAPXPedido" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioActualizacionDescuentosSAPXPedido" />
+        <property name="targetMethod" value="cronActualizaDescuentosSAPXPedido" />
+        <property name="concurrent" value="false" />        
+    </bean>
+    <bean id="cronTriggerActualizaDescuentosSAP" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaActualizacionDescuentosSAPXPedido" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_ACTUALIZA_DESCUENTOS_SAP}" />
+    </bean>  
+    
+    <!--Job REMISIONES-->
+    <bean id="tareaActualizaRemisiones" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioRemisiones" />
+        <property name="targetMethod" value="actualizaRemisiones" />
+        <property name="concurrent" value="false" />        
+    </bean>
+    <bean id="cronTriggerActualizaRemisiones" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaActualizaRemisiones" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_REMISIONES}" />
+    </bean> 
+    
+     <!--Job SPPI-->
+    <bean id="tareaSPPI" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioSPPI" />
+        <property name="targetMethod" value="procesaSPPI" />
+        <property name="concurrent" value="false" />        
+    </bean>
+    <bean id="cronTriggerSPPI" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaSPPI" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_SPPI}" />
+    </bean>    
+    
+     <!--Job SPPI2-->
+    <bean id="tareaSPPI2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioSPPI2" />
+        <property name="targetMethod" value="cronSPPI" />
+        <property name="concurrent" value="false" />        
+    </bean>
+    <bean id="cronTriggerSPPI2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaSPPI2" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_SPPI_2}" />
+    </bean>           
+    
+     <!--Job ACTUALIZACION GRH X TIENDAS-->
+    <bean id="tareaActualizacionGRHXTiendas" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="negocioActualizacionGRHXTiendas" />
+        <property name="targetMethod" value="cronActualizacionGRHXTiendas" />
+        <property name="concurrent" value="false" />        
+    </bean>
+    <bean id="cronTriggerActualizacionGRHXTiendas" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="tareaActualizacionGRHXTiendas" />
+        <property name="cronExpression" value="${CRON_EXPRESSION_ACTUALIZA_GRH_X_TIENDAS}" />
+    </bean>            
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTriggerActualizaCDXTiendas" />  
+                <ref bean="cronTriggerActualizaTiendas" />                  
+                <ref bean="cronTriggerGrabarSolicitudes" />
+                <ref bean="cronTriggerActualizaEstatusCD" />
+                <ref bean="cronTriggerActualizaNotasCargoEntrada" />
+                <ref bean="cronTriggerGrabaDescuentosSAP" />
+                <ref bean="cronTriggerActualizaDescuentosSAP" />  
+                <ref bean="cronTriggerActualizaRemisiones" />
+                <ref bean="cronTriggerSPPI" />   
+                <ref bean="cronTriggerSPPI2" />   
+                <ref bean="cronTriggerActualizacionGRHXTiendas" />     
+            </list>
+        </property>
+    </bean>
+    
+</beans>

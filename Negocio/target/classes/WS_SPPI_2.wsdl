@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://conectorunico/schemas" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://conectorunico.com.mx/definitions" targetNamespace="http://conectorunico.com.mx/definitions">
+  <wsdl:types xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cUnico="http://conectorunico/schemas" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://conectorunico/schemas">
+    <!-- :::::::::::::::::::::::::::::::: Catalogo de Servicios :::::::::::::::::::::::::::::::::: -->
+    <xs:element name="consultaServiciosRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio de consulta de servicios.</xs:documentation>            
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="consultaServiciosResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element maxOccurs="unbounded" name="DetalleServicio" type="cUnico:consultaServicios" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+           
+        </xs:complexType>
+    </xs:element>
+    <!-- :::::::::::::::::::::::::::::::: VerificaSaldo :::::::::::::::::::::::::::::::::: -->
+    <xs:element name="verificaSaldoRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio de verificación de saldo en SAP para saber si un proveedor cuenta con saldo de gasto por distribuir.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">			         
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:attribute name="ClaveCentroProvedor" type="cUnico:t_ClaveCentroProvedor" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>				         
+            <xs:attribute name="ClaveServicio" type="cUnico:t_ClaveServicio" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>				              
+            <xs:attribute name="ClaveSociedad" type="cUnico:t_ClaveSociedad" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>				            
+            <xs:attribute name="Concepto" type="cUnico:t_Concepto" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>              
+            <xs:attribute name="FechaFinal" type="cUnico:t_FormatoFecha" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>	
+        </xs:complexType>
+    </xs:element>	
+
+    <xs:element name="verificaSaldoResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Saldo" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+    <!-- :::::::::::::::::::::::::::::::: CargaReales :::::::::::::::::::::::::::::::::::: -->
+	
+    <xs:element name="cargaRealesRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio que realiza el proceso de una emisión de cobro (Facturación Reales) de servicio a centros de costo clientes.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">			
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                                        						
+                <xs:element name="Descripcion" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Concepto" type="cUnico:t_Concepto" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <!--                <xs:element name="Moneda" type="cUnico:t_AcronimoMoneda"/>-->
+                <xs:element name="FechaInicial" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="FechaFinal" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <!--                <xs:element name="ImporteTotal" type="cUnico:t_Importe"/>-->
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="DetalleCarga" type="cUnico:cargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                    <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                        <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Nodo requerido para ingresar el detalle de Carga Real.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>	
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:attribute name="ClaveCentroProvedor" type="cUnico:t_ClaveCentroProvedor" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>				         
+            <xs:attribute name="ClaveServicio" type="cUnico:t_ClaveServicio" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>				              
+            <xs:attribute name="ClaveSociedad" type="cUnico:t_ClaveSociedad" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>	
+        </xs:complexType>
+    </xs:element>	
+
+    <xs:element name="cargaRealesResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="FolioCarga" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element maxOccurs="unbounded" name="ErroresCarga" type="cUnico:errorCargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+	
+    <!-- :::::::::::::::::::::::::::::::: AvanceCargaReal :::::::::::::::::::::::::::::::: -->
+    <xs:element name="avanceCargaRealRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio que realiza la consulta de estatus de un proceso de carga de facturación anterior, muestra el porcentaje de avance del mismo.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:attribute name="FolioCarga" type="xs:int" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:complexType>
+    </xs:element>	
+	
+    <xs:element name="avanceCargaRealResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element maxOccurs="unbounded" name="AvanceCarga" type="cUnico:avanceCargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+	
+    <!-- :::::::::::::::::::::::::::::::: DetalleCargaReal ::::::::::::::::::::::::::::::: -->
+	
+    <xs:element name="detalleCargaRealRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio que consulta el detalle de la carga correspondiente al folio.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:attribute name="FolioCarga" type="xs:int" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:complexType>
+    </xs:element>	
+	
+    <xs:element name="detalleCargaRealResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element maxOccurs="unbounded" name="DetalleCarga" type="cUnico:detalleCargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+	
+	
+    <!-- :::::::::::::::::::::::::::::::: CargaVirtuales :::::::::::::::::::::::::::::::::::: -->
+	
+    <xs:element name="cargaVirtualesRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio que realiza el proceso de una emisión de cobro (Facturación Virtual) de servicio a centros de costo clientes.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">            								
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="DetalleCarga" type="cUnico:cargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                    <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                        <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Nodo requerido para ingresar el detalle de Carga Virtual.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>	
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>			
+            <xs:attribute name="TipoCarga" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                    <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar el tipo carga 'Carta(1)' ó 'Demanda(2)'</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                    <xs:restriction base="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                        <xs:totalDigits value="1" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                        <xs:enumeration value="1" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+                        <xs:enumeration value="2" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>				
+        </xs:complexType>
+    </xs:element>	
+
+    <xs:element name="cargaVirtualesResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>				
+                <xs:element name="FolioCarga" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element maxOccurs="unbounded" name="ErroresCarga" type="cUnico:errorCargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+	
+    <!-- :::::::::::::::::::::::::::::::: AvanceCargaVirtual :::::::::::::::::::::::::::::::: -->
+    <xs:element name="avanceCargaVirtualRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio que realiza la consulta de estatus de un proceso de carga de facturación anterior, muestra el porcentaje de avance del mismo.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:attribute name="FolioCarga" type="xs:int" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:complexType>
+    </xs:element>	
+	
+    <xs:element name="avanceCargaVirtualResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element maxOccurs="unbounded" name="AvanceCarga" type="cUnico:avanceCargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+	
+    <!-- :::::::::::::::::::::::::::::::: DetalleCargaVirtual ::::::::::::::::::::::::::::::: -->
+	
+    <xs:element name="detalleCargaVirtualRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Servicio que consulta el detalle de la carga correspondiente al folio.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:attribute name="Token" type="cUnico:t_Token" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:attribute name="FolioCarga" type="xs:int" use="required" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:complexType>
+    </xs:element>	
+	
+    <xs:element name="detalleCargaVirtualResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+                <xs:element name="Codigo" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element name="Mensaje" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <xs:element maxOccurs="unbounded" name="DetalleCarga" type="cUnico:detalleCargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- :::::::::::::::::::::::::::::::: Elementos detalleServicios ::::::::::::::::::::::::::::::: -->
+    <xs:complexType name="consultaServicios" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="CentroCliente" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="TipoServicio" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Servicio" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="NaturalezaServicio" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Tarifa" type="cUnico:t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 	
+            <xs:element name="Moneda" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+        </xs:sequence>
+    </xs:complexType>		
+	
+    <!-- :::::::::::::::::::::::::::::::: Elementos CargaReales ::::::::::::::::::::::::::::::: -->
+	
+    <xs:complexType name="cargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">		
+            <xs:element name="EmpresaClienteId" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="CompaniaClienteId" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>                       	
+            <xs:element name="CentroCliente" type="cUnico:t_CentroCliente" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Importe" type="cUnico:t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="NumEmpleado" type="cUnico:t_NumEmpleado" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Descripcion" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>			
+        </xs:sequence>
+    </xs:complexType>
+	
+    <xs:complexType name="errorCargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="CentroCliente" type="cUnico:t_CentroCliente" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Importe" type="cUnico:t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="NumEmpleado" type="cUnico:t_NumEmpleado" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Descripcion" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Error" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>			
+        </xs:sequence>
+    </xs:complexType>	
+	
+    <xs:complexType name="avanceCargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="FolioCarga" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="FechaCarga" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Usuario" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="PorcentajeAvance" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="FechaInicioCarga" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="FechaFinCarga" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:element name="RegistrosTotales" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="RegistrosAceptados" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="RegistrosRechazados" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="NumDocumento" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="EstatusCarga" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Observaciones" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>					
+        </xs:sequence>
+    </xs:complexType>		
+	
+    <xs:complexType name="detalleCargaReal" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="CentroProveedor" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Servicio" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Compania" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="CentroCliente" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Descripcion" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Proyecto" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:element name="MontoCantidad" type="cUnico:t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 	
+            <xs:element name="UnidadNegocio" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:element name="NumEmpleado" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Orden" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Moneda" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="EstatusCarga" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="Observaciones" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="Factura" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="EmpresaIntercompania" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="CentroIntercompania" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 				
+        </xs:sequence>
+    </xs:complexType>	
+	
+	
+    <!-- :::::::::::::::::::::::::::::::: Elementos CargaVirtuales ::::::::::::::::::::::::::::::: -->
+	
+    <xs:complexType name="cargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="CentroProveedor" type="cUnico:t_CentroProveedor" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Servicio" type="cUnico:t_Servicio" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Compania" type="cUnico:t_Compania" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="CentroCliente" type="cUnico:t_CentroCliente" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>			
+            <xs:element name="Descripcion" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <xs:element name="Proyecto" type="cUnico:t_Proyecto" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <xs:element name="UnidadNegocio" type="cUnico:t_UnidadNegocio" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <xs:element name="MontoCantidad" type="cUnico:t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <!--            <xs:element name="Moneda" type="cUnico:t_AcronimoMoneda"/>		-->
+            <!--<xs:element name="CentroIntercompania" type="cUnico:t_CentroIntercompania"/>-->		
+        </xs:sequence>
+    </xs:complexType>	
+	
+    <xs:complexType name="errorCargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="CentroProveedor" type="cUnico:t_CentroProveedor" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Servicio" type="cUnico:t_Servicio" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Compania" type="cUnico:t_Compania" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="CentroCliente" type="cUnico:t_CentroCliente" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>			
+            <xs:element name="Descripcion" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <xs:element name="Proyecto" type="cUnico:t_Proyecto" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <xs:element name="UnidadNegocio" type="cUnico:t_UnidadNegocio" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <xs:element name="MontoCantidad" type="cUnico:t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <xs:element name="Moneda" type="cUnico:t_AcronimoMoneda" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>		
+            <!--<xs:element name="CentroIntercompania" type="cUnico:t_CentroIntercompania"/>-->
+            <xs:element name="Error" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:sequence>
+    </xs:complexType>
+	
+    <xs:complexType name="avanceCargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="FolioCarga" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="FechaCarga" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Usuario" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="PorcentajeAvance" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="FechaInicioCarga" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="FechaFinCarga" type="cUnico:t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:element name="RegistrosTotales" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="RegistrosAceptados" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="RegistrosRechazados" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="EstatusCarga" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Observaciones" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>			
+        </xs:sequence>
+    </xs:complexType>	
+	
+    <xs:complexType name="detalleCargaVirtual" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:sequence xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="CentroProveedor" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Servicio" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Compania" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="CentroCliente" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Descripcion" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:element name="Proyecto" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="UnidadNegocio" type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="MontoCantidad" type="cUnico:t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="Moneda" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="EstatusCarga" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="Observaciones" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="Factura" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="EmpresaIntercompania" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 			
+            <xs:element name="CentroIntercompania" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 						
+        </xs:sequence>
+    </xs:complexType>	
+
+    <!-- :::::::::::::::::::::::::::::::: Tipos :::::::::::::::::::::::::::::: -->
+
+    <xs:simpleType name="t_FormatoFecha" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Tipo definido para expresar Formato Fecha dd/mm/yyyy </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:pattern value="\d{2}[/]\d{2}[/]\d{4}" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:length value="10" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_Importe" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Tipo definido para expresar importes numéricos con fracción hasta dos decimales</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:fractionDigits value="2" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxInclusive value="999999999.99" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:minExclusive value="-999999999.99" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>	
+	
+	
+	
+    <xs:simpleType name="t_AcronimoMoneda" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar un acronimo moneda (MXN,USD,DOP,GTQ,HNL,PEN,SVC,PAB) </xs:documentation>
+        </xs:annotation>	
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:pattern value="[A-Z]{3}" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:enumeration value="MXN" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:enumeration value="USD" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:enumeration value="DOP" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:enumeration value="GTQ" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:enumeration value="HNL" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:enumeration value="PEN" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:enumeration value="SVC" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:enumeration value="PAB" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_Concepto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar concepto facturación (PROVISION(1), GASTO(2)).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:totalDigits value="1" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:enumeration value="1" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+            <xs:enumeration value="2" xmlns:xs="http://www.w3.org/2001/XMLSchema"/> 
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_Token" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresa la llave para el acceso a los métodos del servicio</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace fixed="true" value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="100" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>		
+				
+    <xs:simpleType name="t_ClaveCentroProvedor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave del centro proveedor.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="6" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+			
+    <xs:simpleType name="t_ClaveServicio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave de servicio real que se factura.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="7" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+				
+    <xs:simpleType name="t_ClaveSociedad" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave de la sociedad a la que pertenece el proveedor.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:length value="4" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:pattern value="[a-zA-Z0-9]{4}" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>		
+	
+    <xs:simpleType name="t_CentroCliente" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave centro cliente.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="6" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_NumEmpleado" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar número de empleado al que cobra.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="15" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_CentroProveedor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave centro proveedor.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="6" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+		
+    <xs:simpleType name="t_Servicio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave servicio.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="7" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_Compania" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave compañía cliente.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_Proyecto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar clave proyecto del cliente.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_UnidadNegocio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar unidad de negocio del cliente.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+    </xs:simpleType>
+	
+    <xs:simpleType name="t_CentroIntercompania" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Atributo requerido para expresar centro de costos destino de la carga.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:whiteSpace value="collapse" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+            <xs:maxLength value="6" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        </xs:restriction>
+    </xs:simpleType>	
+ 
+ 
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="consultaServiciosResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:consultaServiciosResponse" name="consultaServiciosResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="avanceCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:avanceCargaVirtualRequest" name="avanceCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificaSaldoRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:verificaSaldoRequest" name="verificaSaldoRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="detalleCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:detalleCargaRealResponse" name="detalleCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="avanceCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:avanceCargaRealResponse" name="avanceCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cargaRealesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:cargaRealesRequest" name="cargaRealesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="detalleCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:detalleCargaRealRequest" name="detalleCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="avanceCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:avanceCargaVirtualResponse" name="avanceCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:consultaServiciosRequest" name="consultaServiciosRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cargaVirtualesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:cargaVirtualesResponse" name="cargaVirtualesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="detalleCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:detalleCargaVirtualRequest" name="detalleCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cargaRealesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:cargaRealesResponse" name="cargaRealesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cargaVirtualesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:cargaVirtualesRequest" name="cargaVirtualesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="avanceCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:avanceCargaRealRequest" name="avanceCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificaSaldoResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:verificaSaldoResponse" name="verificaSaldoResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="detalleCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="sch:detalleCargaVirtualResponse" name="detalleCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ConectorUnicoPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:operation name="consultaServicios" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:consultaServiciosRequest" name="consultaServiciosRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:consultaServiciosResponse" name="consultaServiciosResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="avanceCargaVirtual" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:avanceCargaVirtualRequest" name="avanceCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:avanceCargaVirtualResponse" name="avanceCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaSaldo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:verificaSaldoRequest" name="verificaSaldoRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:verificaSaldoResponse" name="verificaSaldoResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="detalleCargaReal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:detalleCargaRealRequest" name="detalleCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:detalleCargaRealResponse" name="detalleCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="avanceCargaReal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:avanceCargaRealRequest" name="avanceCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:avanceCargaRealResponse" name="avanceCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargaReales" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:cargaRealesRequest" name="cargaRealesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:cargaRealesResponse" name="cargaRealesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargaVirtuales" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:cargaVirtualesRequest" name="cargaVirtualesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:cargaVirtualesResponse" name="cargaVirtualesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="detalleCargaVirtual" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:detalleCargaVirtualRequest" name="detalleCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:detalleCargaVirtualResponse" name="detalleCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConectorUnicoPortSoap11" type="tns:ConectorUnicoPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="consultaServicios" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="consultaServiciosRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="consultaServiciosResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="avanceCargaVirtual" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="avanceCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="avanceCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaSaldo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="verificaSaldoRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="verificaSaldoResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="detalleCargaReal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="detalleCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="detalleCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="avanceCargaReal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="avanceCargaRealRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="avanceCargaRealResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargaReales" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="cargaRealesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="cargaRealesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargaVirtuales" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="cargaVirtualesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="cargaVirtualesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="detalleCargaVirtual" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="detalleCargaVirtualRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="detalleCargaVirtualResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConectorUnicoPortService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:port binding="tns:ConectorUnicoPortSoap11" name="ConectorUnicoPortSoap11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:address location="http://10.220.128.82:8080/WsConectorUnicoSPPI/ConectorUnicoWS/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

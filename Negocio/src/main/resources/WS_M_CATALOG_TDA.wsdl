@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1404945899682" xmlns:ns0="http://www.tibco.com/schemas/WS_M_CATALOG_TDA/SharedResources/SchemaDefinitions/Custom/EKT/Schema.xsd" xmlns:ns1="http://www.tibco.com/schemas/WS_M_CATALOG_TDA/SharedResources/SchemaDefinitions/Custom/EKT/Schema.xsd2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1404945899682">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.tibco.com/schemas/WS_M_CATALOG_TDA/SharedResources/SchemaDefinitions/Custom/EKT/Schema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/schemas/WS_M_CATALOG_TDA/SharedResources/SchemaDefinitions/Custom/EKT/Schema.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="CD" type="xs:int"/>
+            <xs:element name="Parametro">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:CD"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://www.tibco.com/schemas/WS_M_CATALOG_TDA/SharedResources/SchemaDefinitions/Custom/EKT/Schema.xsd2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/schemas/WS_M_CATALOG_TDA/SharedResources/SchemaDefinitions/Custom/EKT/Schema.xsd2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="CD" type="xs:string"/>
+            <xs:element name="Nam_TDA" type="xs:string"/>
+            <xs:element name="Nom_CD" type="xs:string"/>
+            <xs:element name="Num_TDA" type="xs:string"/>
+            <xs:element name="TDAS">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:CD"/>
+                        <xs:element ref="ns1:Nom_CD"/>
+                        <xs:element ref="ns1:Num_TDA"/>
+                        <xs:element ref="ns1:Nam_TDA"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="T_Salida">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:TDAS" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="intfGET_Inventario-service">
+        <wsdl:port name="intfwsGET_InventarioEndpoint0" binding="tns:intfwsGET_InventarioEndpoint0Binding">
+            <soap:address location="http://ws.ad.elektra.com.mx:7142/BussinesProcesses/System/WSEvents/intfGET_Inventario-service.serviceagent/intfwsGET_InventarioEndpoint0"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="portType">
+        <wsdl:operation name="GET__InventarioOp">
+            <wsdl:input message="tns:Parametro"/>
+            <wsdl:output message="tns:T_Salida"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="intfwsGET_InventarioEndpoint0Binding" type="tns:portType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GET__InventarioOp">
+            <soap:operation style="document" soapAction="/BussinesProcesses/System/WSEvents/intfGET_Inventario-service.serviceagent/intfwsGET_InventarioEndpoint1/GET__InventarioOp"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="Parametro">
+        <wsdl:part name="parameters" element="ns0:Parametro"/>
+    </wsdl:message>
+    <wsdl:message name="T_Salida">
+        <wsdl:part name="parameters" element="ns1:T_Salida"/>
+    </wsdl:message>
+</wsdl:definitions>
